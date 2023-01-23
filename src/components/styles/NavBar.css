@@ -1,0 +1,19 @@
+.header{
+position: absolute;
+width: 100%
+}
+
+.nav-container{
+  display: flex;
+  align-items: center;
+  background-color: rgba(37, 36, 36, 0.479);
+}
+.nav-container li{
+  margin: 15px;
+  list-style: none;
+}
+
+.ubicarCarrito{
+  justify-content: flex-end;
+}
+
