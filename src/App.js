@@ -1,17 +1,27 @@
 
 import './App.css';
+import React from 'react';
 import NavBar from './components/NavBar';
-import ItemListContainer from './components/ItemListContainer';
 import Banner from "./components/Banner"
+import {BrowserRouter, Routes, Route} from "react-router-dom"
+import ItemListContainer from './components/ItemListContainer';
+
 
 function App() {
   return(
-    <>
-    <NavBar/>
-
-    <Banner title="Fulvito"/>
-    <ItemListContainer greeting={"Camisetas"}/>
-    </>
+    
+    <BrowserRouter>
+    <div className='App'>
+      <div>
+      <NavBar/>
+      <Routes>
+        <Route path='/' element={<Banner/>}/>
+        <Route path='/' element={<ItemListContainer/>}/>
+      </Routes>
+      </div>
+    </div>
+      </BrowserRouter>
+      
   )
 }
 

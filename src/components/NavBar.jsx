@@ -4,36 +4,27 @@ import "./styles/NavBar.css"
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
 import {faFutbol} from "@fortawesome/free-solid-svg-icons"
 import CartWidget from "./CartWidget"
+import { NavLink, Link } from "react-router-dom"
 
 const NavBar = ()=>{
     return(
-    <header>
-        <div className="header-container">
+        <nav className="nav-container">
 
-            
-        <nav>
-            <ul className="nav-container">
-            <div>
+            <Link to="/" className="sacar-color">
             <FontAwesomeIcon icon={faFutbol} size="2xl"/>
-            </div>
-                <li>
-                    <a href="/">Inicio</a>
-                </li>
-                <li>
-                    <a href="/">Productos</a>
-                </li>
-                <li>
-                    <a href="/">Contacto</a>
-                </li>
+            </Link>
+                <div className="navegacion">
+                    <NavLink to="/">Inicio</NavLink>
+                    <NavLink to="productos/futbol_local">Futbol Local</NavLink>
+                    <NavLink to="productos/seleccion">Seleccion</NavLink>
+                    <NavLink to="productos/futbol_europeo">Futbol Europeo</NavLink>
+
+                </div>
                 <div>
             <CartWidget/>
-                </div>
-            </ul>
-            
+                </div>        
         </nav>
-        </div>
 
-    </header>
     )
 
 }

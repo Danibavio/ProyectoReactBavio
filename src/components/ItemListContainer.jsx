@@ -1,14 +1,25 @@
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import Item from "./Item";
+import { arregloProductos } from "./baseDatos";
 
-import "./styles/ItemListContainer.css"
+const ItemListContainer = () => {
+    const [products, setProducts] = useState(arregloProductos.items)
 
-const ItemListContainer = ({greeting}) =>{
-    return(
-        <section className="item-list-container">
-            <h2 className="item-list-container-title">{greeting}</h2>
-        </section>
-    )
+return(
+    <div>
+        {products.map(product => (
+            <Item
+            key={product.id}
+            id={product.id}
+            title={product.title}
+            price={product.price}
+            />
+        ))}
+    </div>
 
+)
 }
 
-
 export default ItemListContainer
+
