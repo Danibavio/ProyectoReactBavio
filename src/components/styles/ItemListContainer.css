@@ -1,11 +1,8 @@
 .item-list-container {
-    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 20px;
+    margin-left: 50px;
+    margin-right: 50px;
+    justify-content: center;
 }
-
-    .item-list-container-title {
-        text-align: center;
-    }
-
-    h1{
-        width: 100px;
-    }

@@ -15,9 +15,9 @@ const NavBar = ()=>{
             </Link>
                 <div className="navegacion">
                     <NavLink to="/">Inicio</NavLink>
-                    <NavLink to="productos/futbol_local">Futbol Local</NavLink>
-                    <NavLink to="productos/seleccion">Seleccion</NavLink>
-                    <NavLink to="productos/futbol_europeo">Futbol Europeo</NavLink>
+                    <NavLink to="productos/Futbol Local">Futbol Local</NavLink>
+                    <NavLink to="productos/Seleccion">Seleccion</NavLink>
+                    <NavLink to="productos/Futbol Europeo">Futbol Europeo</NavLink>
 
                 </div>
                 <div>
