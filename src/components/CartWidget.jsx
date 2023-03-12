@@ -1,15 +1,12 @@
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
-import {faCartShopping} from "@fortawesome/free-solid-svg-icons"
-import "./styles/CartWidget.css"
+import React from 'react';
+import { FaShoppingCart } from 'react-icons/fa';
 
-const CartWidget = () =>{
-    return(
-        <div className="carrito">
-            <FontAwesomeIcon icon={faCartShopping} size="xl" color="black"/>
-            <div className="CantidadProductos">0</div>
+const CartWidget = ({ openCart }) => {
+    return (
+        <div className='cart-widget' onClick={openCart}>
+            <FaShoppingCart />
         </div>
-    )
-}
+    );
+};
 
-
-export default CartWidget
+export default CartWidget;

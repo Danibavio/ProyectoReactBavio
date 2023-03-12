@@ -5,9 +5,11 @@ import Item from "./Item";
 import { arregloProductos } from "./baseDatos";
 import './styles/ItemListContainer.css'
 
+
 const ItemListContainer = () => {
     const [products, setProducts] = useState([]);
     let {tipoProducto} = useParams()
+
 
     useEffect(() => {
         let productosFiltrados = arregloProductos;
@@ -27,7 +29,7 @@ return(
             id={product.id}
             pictureUrl={product.pictureUrl}
             title={product.title}
-            price={product.price}
+            price={product.precio}
         />
         </Link>
         ))}
