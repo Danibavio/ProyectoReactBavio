@@ -1,42 +1,41 @@
-import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import { useParams } from "react-router-dom";
-import Item from "./Item";
-import { arregloProductos } from "./baseDatos";
-import './styles/ItemListContainer.css'
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import ItemList from './ItemList';
+import { getDocs, collection, where } from "firebase/firestore";
+import { db } from './fireBase';
 
+function useCategoria(){
+    const {categoria} = useParams()
+    return categoria
+}
 
 const ItemListContainer = () => {
-    const [products, setProducts] = useState([]);
-    let {tipoProducto} = useParams()
+    const [productos, setProductos] = useState([]);
+    const categoria = useCategoria()
 
 
     useEffect(() => {
-        let productosFiltrados = arregloProductos;
-        if (tipoProducto) {
-            productosFiltrados = arregloProductos.filter(
-                (product) => product.categoria === tipoProducto
-            )
-        }
-        setProducts(productosFiltrados)
-    }, [tipoProducto]);
+        console.log('categoria:', categoria);
+        const productosRef = collection(db, 'camisetas');
+        const query = categoria ? where(productosRef, 'categoria', '==', categoria) : productosRef;
+        getDocs(query)
+            .then((querySnapshot) => {
+                const productosArr = [];
+                querySnapshot.forEach((doc) => {
+                    productosArr.push({ id: doc.id, ...doc.data() });
+                });
+                setProductos(productosArr);
+            })
+            .catch((error) => {
+                console.log('Error obteniendo productos: ', error);
+            });
+    },[categoria]);
+    return (
+        <div className="container">
+            <h2 className="my-4">{typeof categoria === 'string' ? categoria.toUpperCase() : 'PRODUCTOS'}</h2>
+            <ItemList productos={productos} />
+        </div>
+    );
+};
 
-return(
-    <div className="item-list-container">
-        {products.map(product => (
-        <Link key={product.id} to={`/item/${product.id}`}>
-        <Item className="item-card"
-            id={product.id}
-            pictureUrl={product.pictureUrl}
-            title={product.title}
-            price={product.precio}
-        />
-        </Link>
-        ))}
-    </div>
-
-)
-}
-
-export default ItemListContainer
-
+export default ItemListContainer;

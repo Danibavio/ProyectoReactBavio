@@ -6,10 +6,11 @@ export const CartProvider = ({ children }) => {
     const [cartItems, setCartItems] = useState([]);
 
     const agregarItem = (item, cantidad) => {
-        const itemEnCarrito = cartItems.find((cartItem) => cartItem.item.id === item.id);
-        if (itemEnCarrito) {
-            itemEnCarrito.cantidad += cantidad;
-            setCartItems([...cartItems]);
+        const itemIndex = cartItems.findIndex((cartItem) => cartItem.item.id === item.id);
+        if (itemIndex !== -1) {
+            const newCartItems = [...cartItems];
+            newCartItems[itemIndex].cantidad += cantidad;
+            setCartItems(newCartItems);
         } else {
             setCartItems([...cartItems, { item, cantidad }]);
         }

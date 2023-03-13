@@ -1,39 +1,33 @@
-import React, { useState, useEffect, useContext } from "react";
-import { useParams } from "react-router-dom";
-import { arregloProductos } from "./baseDatos";
-import "./styles/ItemDetailContainer.css"
-import { CartContext } from "../context/CartContext";
-import ItemQuantitySelector from "./ItemQuantitySelectos";
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import Item from './Item';
+import { getDoc, doc } from "firebase/firestore";
+import { db } from './fireBase';
 
 const ItemDetailContainer = () => {
-    const id = parseInt(useParams().id)
-    const [product, setProduct] = useState({});
-    const { agregarItem } = useContext(CartContext);
+    const [producto, setProducto] = useState({});
+    const { id } = useParams();
 
     useEffect(() => {
-        const fetchProduct = async () => {
-        const product = await arregloProductos.find(
-        product => product.id === parseInt(id)
-        );
-        setProduct(product);
-    };
-    fetchProduct();
+        const productoRef = doc(db, 'camisetas', id);
+
+        getDoc(productoRef)
+            .then((docSnapshot) => {
+                if (docSnapshot.exists()) {
+                    setProducto({ id: docSnapshot.id, ...docSnapshot.data() });
+                } else {
+                    console.log('No se encontró el producto');
+                }
+            })
+            .catch((error) => {
+                console.log('Error obteniendo producto: ', error);
+            });
     }, [id]);
 
     return (
-    <div className="item-detail-card">
-        {product && (
-                <>
-                    <h2>{product.title}</h2>
-                    <img src={product.pictureUrl} alt={product.title} />
-                    <p>Precio: ${product.precio}</p>
-                    <p>Categoría: {product.categoria}</p>
-                    <button onClick={()=> agregarItem(product)}>Agregar al carrito</button>
-                    
-                    <ItemQuantitySelector/>
-                </>
-        )}
-    </div>
+        <div className="container my-4">
+            <Item producto={producto} />
+        </div>
     );
 };
 

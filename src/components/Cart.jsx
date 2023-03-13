@@ -1,57 +1,52 @@
-import { useContext } from 'react';
+import React, { useContext } from 'react';
+import { Link } from 'react-router-dom';
 import { CartContext } from '../context/CartContext';
-
-const CartItem = (props) => {
-    
-    return (
-        <div className="cart-item">
-            {props.producto && (
-                <img src={props.producto.pictureUrl} alt={props.producto.title} />
-            )}
-            <div>
-                <h3>{props.producto.title}</h3>
-                <p>Cantidad: {props.cantidad}</p>
-                <p>Precio Total: $ {(props.precioTotal)}</p>
-            </div>
-        </div>
-    
-    );
-};
-
-
-const CartList = () => {
-    const {cartItems} = useContext(CartContext);
-
-    return (
-        <div className="cart-list">
-            {cartItems.map((item) => (
-                <CartItem
-                    key={item.producto.id}
-                    producto={item.producto}
-                    cantidad={item.cantidad}
-                    precioTotal={item.producto ? item.cantidad * item.producto.precio : 0}
-                />
-            ))}
-        </div>
-        
-    );
-};
-
+import { getDocs, collection } from 'firebase/firestore';
+import { db } from './fireBase';
 const Cart = () => {
-    const {cartItems, precioTotal} = useContext(CartContext);
+    const { cartItems, eliminarItem, limpiarCarrito, precioTotal } = useContext(CartContext);
+
+    const handleEliminarItem = (itemId) => {
+        eliminarItem(itemId);
+    };
+
+    const handleLimpiarCarrito = () => {
+        limpiarCarrito();
+    };
+
+    const renderCartItems = async () => {
+        const camisetasCollection = collection(db, 'camisetas');
+        const camisetasSnapshot = await getDocs(camisetasCollection);
+        const camisetas = camisetasSnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+        return cartItems.map((cartItem) => {
+            const camiseta = camisetas.find((c) => c.id === cartItem.item);
+            return (
+                <div key={cartItem.item}>
+                    <h3>{camiseta.title}</h3>
+                    <p>Cantidad: {cartItem.cantidad}</p>
+                    <p>Precio unitario: ${camiseta.precio}</p>
+                    <button onClick={() => handleEliminarItem(cartItem.item)}>Eliminar</button>
+                </div>
+            );
+        });
+    };
 
     return (
-        <div className="cart">
-            <h2>Carrito de Compra</h2>
-            {cartItems.length === 0 ? (
-                <p>No hay productos en el carrito.</p>
-            ) : (
+        <>
+            <h2>Carrito</h2>
+            {cartItems.length > 0 ? (
                 <>
-                    <CartList />
-                    <p>Total: {(precioTotal())}</p>
+                    <div>{renderCartItems()}</div>
+                    <p>Total: ${precioTotal()}</p>
+                    <button onClick={handleLimpiarCarrito}>Limpiar carrito</button>
+                    <Link to="/checkout">
+                        <button>Comprar</button>
+                    </Link>
                 </>
+            ) : (
+                <p>El carrito está vacío.</p>
             )}
-        </div>
+        </>
     );
 };
 
