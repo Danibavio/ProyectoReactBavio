@@ -1,0 +1,29 @@
+
+.header{
+    background-image: url(./assets/banner.png);
+
+}
+.header-titulo{
+    margin: auto;
+    font-size: 120px;
+    justify-content: center;
+    color: rgba(201, 5, 5, 0.877);
+    -webkit-text-stroke: 6px rgb(2, 2, 2);
+
+
+}
+
+.navegacion{
+    margin: auto;
+    height: 4rem;
+    display: flex;
+    background-color: rgb(212, 9, 9);
+    justify-content: space-evenly;
+    align-items: center;
+
+}
+ul{
+    color: rgba(255, 255, 255, 0.815);
+    list-style-type: none;
+    font-size: 1.5rem;
+}
