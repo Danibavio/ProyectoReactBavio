@@ -1,0 +1,30 @@
+.itemDetail{
+    display: flex;
+    align-items: center;
+    color: rgb(209, 214, 218);
+    box-shadow: 0 5px 30px 0 rgba(248, 5, 5, 0.986);
+    background-color: rgba(5, 3, 3, 0.082);
+}
+
+.itemDetail img{
+    width: 600px;
+    height: 850px;
+}
+.imgDetail{
+    margin:3.5rem;
+}
+.itemDetailCard{
+    background-color:  rgba(214, 20, 20, 0.945);;
+    margin: 3.5rem;
+}
+.itemDetailCard h2{
+    font-size: 120px;
+}
+
+.itemDetailCard p{
+    margin: 50px;
+}
+
+
+
+

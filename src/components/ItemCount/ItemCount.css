@@ -1,0 +1,32 @@
+.Contador {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.sumaryRestar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 10%;
+}
+
+.botonContador {
+    background-color: lightgray;
+    border: none;
+    font-size: 30px;
+
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+
+.cantidad {
+    font-size: 30px;
+    margin: 0;
+}
+
+.botonAñadir {
+    margin-top: 10px
+}

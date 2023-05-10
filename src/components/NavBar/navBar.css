@@ -22,8 +22,9 @@
     align-items: center;
 
 }
-ul{
+.navegacion a{
     color: rgba(255, 255, 255, 0.815);
     list-style-type: none;
     font-size: 1.5rem;
+    text-decoration: none;
 }

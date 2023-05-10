@@ -1,0 +1,29 @@
+.card{
+    width: 400px;
+    margin: auto 100px 30px;
+    padding: 20px;
+    box-shadow: 0 5px 30px 0 rgba(248, 5, 5, 0.986);
+    background-color: rgba(5, 3, 3, 0.048);
+    border-radius: 10px;
+}
+.imgCard img{
+    width: 400px;
+    height: 650px;
+}
+h3{
+    font-size: 40px;
+}
+p{
+    font-size: 30px;
+}
+.DetalleBoton{
+    display: flex;
+    justify-content: center;
+    background-color: rgba(248, 5, 5, 0.521);
+    border-radius: 100px;
+}
+a.DetalleBoton{
+    color: black;
+    font-size: 40px;
+    text-decoration: none;
+}
