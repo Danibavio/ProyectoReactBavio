@@ -25,6 +25,17 @@
     margin: 50px;
 }
 
+.botonContador {
+    background-color: lightgray;
+    border: none;
+    font-size: 30px;
+
+    border-radius: 10px;
+    cursor: pointer;
+    text-decoration: none;
+    color:black
+}
+
 
 
 
