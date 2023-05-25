@@ -6,6 +6,11 @@ import NavBar from './components/NavBar';
 import { BrowserRouter, Route, Routes} from "react-router-dom"
 import { CartProvider } from './context/CartContext';
 import Carrito from './components/Cart';
+
+
+
+
+
 function App() {
   return (
     <div className="App">

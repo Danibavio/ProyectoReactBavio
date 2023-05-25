@@ -1,8 +1,10 @@
 import { useState, useEffect } from "react";
-import { getProductsById } from "../productos";
+/* import { getProductsById } from "../productos"; */
 import ItemDetail from "../ItemDetail/ItemDetail";
 import { useParams } from "react-router-dom";
 import './ItemDetailContainer.css'
+import { doc, getDoc } from "firebase/firestore";
+import { db } from "../../services/firebase/firebaseConfig";
 
 
 const ItemDetailContainer= () =>{
@@ -11,12 +13,17 @@ const ItemDetailContainer= () =>{
     const { itemId } = useParams()
 
     useEffect(()=>{
-        getProductsById(itemId)
+        const docRef = doc(db, 'productos', itemId)
+
+        getDoc(docRef)
         .then(response =>{
-            setProducts(response)
+            const data = response.data()
+            const productoFB = {id: response.id, ...data}
+            setProducts(productoFB)
         })
-        .catch(error=>
-            console.error(error))
+        .catch(error =>{
+            console.log(error)
+        })
     },[itemId])
     return(
         <div className="ItemDetailContainer">

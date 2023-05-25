@@ -32,7 +32,7 @@ const ItemDetail = ({id, price, title, editorial, img, description, stock}) =>{
                     cantidadAgregada > 0 ? (
                         <Link to='/carrito' className="botonContador">Terminar compra</Link>
                     ) : (
-                        <ItemCount initial={1} stock={stock} onAdd={handleOnAdd}/>
+                        <ItemCount initial={1} stock={stock} onAdd={handleOnAdd} />
                     )
                 }
             </footer>
