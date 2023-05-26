@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { CartContext } from '../../context/CartContext';
+import './Cart.css'
 
 const Carrito = () => {
     const { carrito, removerItem } = useContext(CartContext);
@@ -25,20 +26,21 @@ const Carrito = () => {
     return (
         <div>
             <h2>Carrito de compras</h2>
-            <ul>
+            <ul className='ul-cart'>
                 {carrito.map((item) => (
-                    <li key={item.id}>
-                        <div>
-                            <h3>{item.title}</h3>
-                            <p>Cantidad: {item.cantidad}</p>
-                            <p>Precio unitario: ${item.price}</p>
-                            <p>Precio total: ${item.price * item.cantidad}</p>
-                            <button onClick={() => handleRemoveItem(item.id)}>Eliminar</button>
+                    <li  key={item.id} >
+                        <div className='carrito'>
+                            <h3 className='cart-title'>{item.title}</h3>
+                            <p className='cart-info'>Cantidad: {item.cantidad}</p>
+                            <p className='cart-info'>Precio unitario: ${item.price}</p>
+                            <p className='cart-info'>Precio total: ${item.price * item.cantidad}</p>
+                            <button className='cart-button' onClick={() => handleRemoveItem(item.id)}>Eliminar</button>
                         </div>
                     </li>
                 ))}
             </ul>
-            <p>Precio total: ${getTotalPrice()}</p>
+            <p className='cart-total'>Precio total: ${getTotalPrice()}</p>
+            <Link to="/checkout" className='cart-checkout'>Finalizar Compra</Link>
         </div>
     );
 }

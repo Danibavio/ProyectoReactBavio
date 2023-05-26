@@ -1,17 +1,24 @@
 .card{
-    width: 400px;
-    margin: auto 100px 30px;
+    width: 350px;
+    height: auto;
     padding: 20px;
     box-shadow: 0 5px 30px 0 rgba(248, 5, 5, 0.986);
     background-color: rgba(5, 3, 3, 0.048);
     border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
+    margin-bottom: 50px;
 }
 .imgCard img{
-    width: 400px;
-    height: 650px;
+    width: 100%;
+    height: auto;
+    max-width: 300px;
+    object-fit: cover;
 }
 h3{
-    font-size: 40px;
+    font-size: 30px;
 }
 p{
     font-size: 30px;
